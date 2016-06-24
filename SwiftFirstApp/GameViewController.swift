@@ -45,15 +45,22 @@ class GameViewController: UIViewController{
         
         
         
+        
+        
+        
+        
+        
         // **************************************************
     }
     
     // 「ランキングを見る」ボタン押下時の処理
     @IBAction func checkRanking(sender: UIButton) {
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        // 検索件数
+        let searchNum = appDelegate.rankingNumber
         
-        let rankingViewController = RankingViewController()
-        var arrayNameData = Array(count: rankingViewController.rankingData.count, repeatedValue: AnyObject!())
-        var arrayScoreData = Array(count: rankingViewController.rankingData.count, repeatedValue: AnyObject!())
+        var arrayNameData = Array(count: searchNum, repeatedValue: AnyObject!())
+        var arrayScoreData = Array(count: searchNum, repeatedValue: AnyObject!())
         
         // **********【問題２】ランキングを表示しよう！**********
         
@@ -62,7 +69,14 @@ class GameViewController: UIViewController{
         
         
         
+        
+        
+        
+        
+        
         // **************************************************
+        //ランキング画面に遷移
+        self.performSegueWithIdentifier("toLanking", sender: self)
     }
     
     // タイマーを作成

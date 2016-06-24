@@ -12,8 +12,6 @@ import NCMB
 class RankingViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     // rankingTableView
     @IBOutlet weak var rankingTableView: UITableView!
-    // 順位
-    let rankingData = [1, 2, 3, 4, 5]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,8 +21,8 @@ class RankingViewController: UIViewController, UITableViewDataSource, UITableVie
     
     // rankingTableViewのセルの数を指定
     func tableView(table: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        return rankingData.count
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        return appDelegate.rankingNumber
     }
     
     // rankingTableViewのセルの内容を設定
@@ -33,20 +31,20 @@ class RankingViewController: UIViewController, UITableViewDataSource, UITableVie
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         // Ranking
         let ranking = rankingTableView.viewWithTag(1) as! UILabel
-        ranking.text = "\(rankingData[indexPath.row])位"
+        ranking.text = "\(indexPath.row+1)位"
         // name
         let name = rankingTableView.viewWithTag(2) as! UILabel
-        if appDelegate.nameData?.count < indexPath.row+1 {
+        if appDelegate.nameData[indexPath.row] == nil {
             name.text = "no data"
         } else {
-            name.text = "\(appDelegate.nameData![indexPath.row])さん"
+            name.text = "\(appDelegate.nameData[indexPath.row])さん"
         }
         // score
         let score = rankingTableView.viewWithTag(3) as! UILabel
-        if appDelegate.scoreData?.count < indexPath.row+1 {
+        if appDelegate.scoreData[indexPath.row] == nil {
             score.text = "-"
         } else {
-            score.text = "\(appDelegate.scoreData![indexPath.row])連打"
+            score.text = "\(appDelegate.scoreData[indexPath.row])連打"
         }
         return cell
     }
