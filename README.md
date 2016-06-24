@@ -148,7 +148,7 @@ __【作業2-2】__シュミレーターで実行、「Start」ボタンを押�
 
 * 検索に成功しても、ランキング画面に表示するためには次の処理が必要です
 
-__【作業2-3】__検索に成功したら、該当する箇所に以下の処理を追記して、取得した値から必要な値を取り出します
+__【作業2-3】__検索に成功したら、該当する箇所に以下の処理を追記して、取得した値から必要な値を取り出し、ランキング画面へ遷移させます
 
 * 検索に成功した場合の処理を行う箇所に追記
 
@@ -169,6 +169,7 @@ for object in objects {
 let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
 appDelegate.nameData = arrayNameData
 appDelegate.scoreData = arrayScoreData
+// ランキング画面に遷移
 self.performSegueWithIdentifier("toLanking", sender: self)
 ```
 
