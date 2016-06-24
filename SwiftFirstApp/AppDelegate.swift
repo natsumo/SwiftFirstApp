@@ -13,8 +13,13 @@ import NCMB
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var nameData: Array<AnyObject>?
-    var scoreData: Array<AnyObject>?
+    // ランキング取得数
+    static let rankingNum = 5
+    var rankingNumber = rankingNum
+    // 名前
+    var nameData = Array(count: rankingNum, repeatedValue: AnyObject!())
+    // スコア
+    var scoreData = Array(count: rankingNum, repeatedValue: AnyObject!())
     
     //********** APIキーの設定 **********
     let applicationkey = "YOUR_NCMB_APPLICATIONKEY"

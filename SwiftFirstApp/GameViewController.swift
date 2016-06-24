@@ -36,8 +36,9 @@ class GameViewController: UIViewController{
         timerFunc()
     }
     
-    // **********【問題１】名前とスコアを保存しよう！**********
+    // 名前とスコアの保存処理
     func saveScore (name: String, score: Int) {
+        // **********【問題１】名前とスコアを保存しよう！**********
         // 保存先クラスを作成
         let obj = NCMBObject(className: "GameScore")
         // 値を設定
@@ -55,15 +56,17 @@ class GameViewController: UIViewController{
                 
             }
         }
-        
+        // **************************************************
     }
     
     // 「ランキングを見る」ボタン押下時の処理
     @IBAction func checkRanking(sender: UIButton) {
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        // 検索件数
+        let searchNum = appDelegate.rankingNumber
         
-        let rankingViewController = RankingViewController()
-        var arrayNameData = Array(count: rankingViewController.rankingData.count, repeatedValue: AnyObject!())
-        var arrayScoreData = Array(count: rankingViewController.rankingData.count, repeatedValue: AnyObject!())
+        var arrayNameData = Array(count: searchNum, repeatedValue: AnyObject!())
+        var arrayScoreData = Array(count: searchNum, repeatedValue: AnyObject!())
         
         // **********【問題２】ランキングを表示しよう！**********
         // GameScoreクラスを検索するクエリを作成
@@ -71,14 +74,12 @@ class GameViewController: UIViewController{
         // scoreの降順でデータを取得するように設定する
         query.addDescendingOrder("score")
         // 検索件数を設定
-        let rankingData = rankingViewController.rankingData
-        query.limit = Int32(rankingData.count)
+        query.limit = Int32(searchNum)
         // データストアを検索
         query.findObjectsInBackgroundWithBlock { (objects: [AnyObject]!, error: NSError!) -> Void in
             if error != nil {
                 // 検索に失敗した場合の処理
                 print("検索に失敗しました。エラーコード：\(error.code)")
-                
             } else {
                 // 検索に成功した場合の処理
                 print("検索に成功しました。")
@@ -92,11 +93,11 @@ class GameViewController: UIViewController{
             
             // 取得した名前とスコアをAppDelegateのフィールド値に設定
             let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-            appDelegate.nameData? = arrayNameData
-            appDelegate.scoreData? = arrayScoreData
+            appDelegate.nameData = arrayNameData
+            appDelegate.scoreData = arrayScoreData
             self.performSegueWithIdentifier("toLanking", sender: self)
         }
-        
+        // **************************************************
     }
     
     // タイマーを作成
