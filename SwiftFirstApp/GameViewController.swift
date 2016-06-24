@@ -48,7 +48,7 @@ class GameViewController: UIViewController{
         obj.saveInBackgroundWithBlock{(error: NSError!) in
             if (error != nil) {
                 // 保存に失敗した場合の処理
-                print("エラーが発生しました。エラーコード:\(error.code)")
+                print("保存に失敗しました。エラーコード:\(error.code)")
                 
             }else{
                 // 保存に成功した場合の処理
@@ -83,6 +83,7 @@ class GameViewController: UIViewController{
             } else {
                 // 検索に成功した場合の処理
                 print("検索に成功しました。")
+                // オブジェクトから必要なnameとscoreの値を取り出す
                 var i = 0
                 for object in objects {
                     arrayNameData[i] = object.objectForKey("name")
@@ -95,9 +96,10 @@ class GameViewController: UIViewController{
             let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
             appDelegate.nameData = arrayNameData
             appDelegate.scoreData = arrayScoreData
-            self.performSegueWithIdentifier("toLanking", sender: self)
         }
         // **************************************************
+        // ランキング画面に遷移
+        self.performSegueWithIdentifier("toLanking", sender: self)
     }
     
     // タイマーを作成
@@ -124,7 +126,7 @@ class GameViewController: UIViewController{
                 inputName(self.count)
             }
         }
-            countTimer--
+        countTimer--
     }
     
     // 名前入力アラートの表示
@@ -140,7 +142,7 @@ class GameViewController: UIViewController{
             self.saveScore(alert.textFields![0].text!, score: sender)
             // 名前とスコアの表示
             self.label.text = "\(alert.textFields![0].text!)さんのスコアは\(sender)連打でした"
-        })
+            })
         presentViewController(alert, animated: true, completion: nil)
     }
     
@@ -151,6 +153,4 @@ class GameViewController: UIViewController{
             self.counter.text = "\(count)"
         }
     }
-    
 }
-
