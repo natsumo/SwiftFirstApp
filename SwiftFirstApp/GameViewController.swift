@@ -45,15 +45,13 @@ class GameViewController: UIViewController{
         obj.setObject(name, forKey: "name")
         obj.setObject(score, forKey: "score")
         // 保存を実施
-        obj.saveInBackgroundWithBlock{(error: NSError!) in
+        obj.saveInBackgroundWithBlock{(error: NSError!) -> Void in 
             if (error != nil) {
                 // 保存に失敗した場合の処理
                 print("保存に失敗しました。エラーコード:\(error.code)")
-                
             }else{
                 // 保存に成功した場合の処理
                 print("保存に成功しました。objectId:\(obj.objectId)")
-                
             }
         }
         // **************************************************
@@ -91,15 +89,14 @@ class GameViewController: UIViewController{
                     i += 1
                 }
             }
-            
             // 取得した名前とスコアをAppDelegateのフィールド値に設定
             let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
             appDelegate.nameData = arrayNameData
             appDelegate.scoreData = arrayScoreData
+            // ランキング画面に遷移
+            self.performSegueWithIdentifier("toLanking", sender: self)
         }
         // **************************************************
-        // ランキング画面に遷移
-        self.performSegueWithIdentifier("toLanking", sender: self)
     }
     
     // タイマーを作成
