@@ -20,6 +20,8 @@ class GameViewController: UIViewController{
     @IBOutlet weak var label: UILabel!
     // counter
     @IBOutlet weak var counter: UITextField!
+    // 「Start」ボタン
+    @IBOutlet weak var start: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +31,8 @@ class GameViewController: UIViewController{
     
     // 「Start」ボタン押下時の処理
     @IBAction func startGame(sender: UIButton) {
+        // 実行中ボタンの無効化
+        sender.enabled = false
         // カウンターを0にする
         count = 0
         // タイマーを13秒にする
@@ -36,7 +40,7 @@ class GameViewController: UIViewController{
         timerFunc()
     }
     
-    // 名前とスコアの保存処理
+    // 「Start」ボタン押下時の処理
     func saveScore (name: String, score: Int) {
         // **********【問題１】名前とスコアを保存しよう！**********
         // 保存先クラスを作成
@@ -59,8 +63,8 @@ class GameViewController: UIViewController{
     
     // 「ランキングを見る」ボタン押下時の処理
     @IBAction func checkRanking(sender: UIBarButtonItem) {
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         // 検索件数
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let searchNum = appDelegate.rankingNumber
         
         var arrayNameData = Array(count: searchNum, repeatedValue: AnyObject!())
@@ -90,7 +94,6 @@ class GameViewController: UIViewController{
                 }
             }
             // 取得した名前とスコアをAppDelegateのフィールド値に設定
-            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
             appDelegate.nameData = arrayNameData
             appDelegate.scoreData = arrayScoreData
             // ランキング画面に遷移
@@ -139,6 +142,8 @@ class GameViewController: UIViewController{
             self.saveScore(alert.textFields![0].text!, score: sender)
             // 名前とスコアの表示
             self.label.text = "\(alert.textFields![0].text!)さんのスコアは\(sender)連打でした"
+            // 「Start」ボタンを有効化
+            self.start.enabled = true
             })
         presentViewController(alert, animated: true, completion: nil)
     }

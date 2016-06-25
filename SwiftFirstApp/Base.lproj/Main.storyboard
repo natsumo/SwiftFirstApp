@@ -70,6 +70,7 @@
                     <connections>
                         <outlet property="counter" destination="kPA-aM-PiO" id="tDO-lr-Zck"/>
                         <outlet property="label" destination="bHL-27-HnA" id="pUs-nN-6eC"/>
+                        <outlet property="start" destination="Xay-T4-mtg" id="Baj-7I-DyX"/>
                         <segue destination="iS6-y5-uwH" kind="push" identifier="toLanking" id="m8I-ey-CtI"/>
                     </connections>
                 </viewController>
