@@ -50,11 +50,14 @@ class GameViewController: UIViewController{
         
         
         
+        
+        
+        
         // **************************************************
     }
     
     // 「ランキングを見る」ボタン押下時の処理
-    @IBAction func checkRanking(sender: UIButton) {
+    @IBAction func checkRanking(sender: UIBarButtonItem) {
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         // 検索件数
         let searchNum = appDelegate.rankingNumber
@@ -74,9 +77,10 @@ class GameViewController: UIViewController{
         
         
         
+        
+        
+        
         // **************************************************
-        //ランキング画面に遷移
-        self.performSegueWithIdentifier("toLanking", sender: self)
     }
     
     // タイマーを作成
@@ -103,7 +107,7 @@ class GameViewController: UIViewController{
                 inputName(self.count)
             }
         }
-            countTimer--
+        countTimer -= 1
     }
     
     // 名前入力アラートの表示
@@ -119,7 +123,7 @@ class GameViewController: UIViewController{
             self.saveScore(alert.textFields![0].text!, score: sender)
             // 名前とスコアの表示
             self.label.text = "\(alert.textFields![0].text!)さんのスコアは\(sender)連打でした"
-        })
+            })
         presentViewController(alert, animated: true, completion: nil)
     }
     
@@ -130,6 +134,4 @@ class GameViewController: UIViewController{
             self.counter.text = "\(count)"
         }
     }
-    
 }
-
