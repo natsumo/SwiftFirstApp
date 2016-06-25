@@ -58,7 +58,7 @@ class GameViewController: UIViewController{
     }
     
     // 「ランキングを見る」ボタン押下時の処理
-    @IBAction func checkRanking(sender: UIButton) {
+    @IBAction func checkRanking(sender: UIBarButtonItem) {
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         // 検索件数
         let searchNum = appDelegate.rankingNumber
@@ -123,7 +123,7 @@ class GameViewController: UIViewController{
                 inputName(self.count)
             }
         }
-        countTimer--
+        countTimer -= 1
     }
     
     // 名前入力アラートの表示
