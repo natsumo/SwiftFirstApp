@@ -63,7 +63,7 @@
                     <navigationItem key="navigationItem" id="eKf-0s-Yh5">
                         <barButtonItem key="rightBarButtonItem" title="ランキングを見る" id="VC2-F7-XUw">
                             <connections>
-                                <action selector="checkRanking:" destination="BYZ-38-t0r" id="ho3-0G-cDw"/>
+                                <segue destination="iS6-y5-uwH" kind="push" id="mEm-bT-tRk"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -71,7 +71,6 @@
                         <outlet property="counter" destination="kPA-aM-PiO" id="tDO-lr-Zck"/>
                         <outlet property="label" destination="bHL-27-HnA" id="pUs-nN-6eC"/>
                         <outlet property="start" destination="Xay-T4-mtg" id="Baj-7I-DyX"/>
-                        <segue destination="iS6-y5-uwH" kind="push" identifier="toLanking" id="m8I-ey-CtI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -110,14 +109,14 @@
                                             <rect key="frame" x="0.0" y="0.0" width="248" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="p6A-xU-F41">
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="no data" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="p6A-xU-F41">
                                                     <rect key="frame" x="43" y="11" width="126" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="score" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="j5a-5e-xvt">
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="j5a-5e-xvt">
                                                     <rect key="frame" x="177" y="11" width="71" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>

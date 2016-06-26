@@ -12,40 +12,74 @@ import NCMB
 class RankingViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     // rankingTableView
     @IBOutlet weak var rankingTableView: UITableView!
+    // ランキング取得数
+    let rankingNumber = 5
+    // 取得したデータ格納用配列
+    var rankingArray: Array<NCMBObject> = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         rankingTableView.delegate = self
         rankingTableView.dataSource = self
+        getScore()
+    }
+    
+    // ランキングを検索し表示する
+    func getScore() {
+        // **********【問題２】ランキングを表示しよう！**********
+        // GameScoreクラスを検索するクエリを作成
+        let query = NCMBQuery(className: "GameScore")
+        // scoreの降順でデータを取得するように設定する
+        query.addDescendingOrder("score")
+        // 検索件数を設定
+        query.limit = Int32(rankingNumber)
+        // データストアを検索
+        query.findObjectsInBackgroundWithBlock { (objects: [AnyObject]!, error: NSError!) -> Void in
+            if error != nil {
+                // 検索に失敗した場合の処理
+                print("検索に失敗しました。エラーコード：\(error.code)")
+            } else {
+                // 検索に成功した場合の処理
+                print("検索に成功しました。")
+                // 取得したデータを格納
+                self.rankingArray = objects as! Array
+                print(self.rankingArray)
+                // テーブルビューをリロード
+                self.rankingTableView.reloadData()
+            }
+        }
+        // **************************************************
     }
     
     // rankingTableViewのセルの数を指定
     func tableView(table: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        return appDelegate.rankingNumber
+        return rankingNumber
     }
     
     // rankingTableViewのセルの内容を設定
     func tableView(table: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = rankingTableView.dequeueReusableCellWithIdentifier("rankingTableCell", forIndexPath: indexPath)
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        var object: NCMBObject?
+        // 「表示件数」＜「取得件数」の場合のobjectを作成
+        if indexPath.row < rankingArray.count {
+            object = self.rankingArray[indexPath.row]
+        }
+        print(indexPath.row)
+        print(rankingArray.count)
+        
         // Ranking
-        let ranking = rankingTableView.viewWithTag(1) as! UILabel
+        let ranking = cell.viewWithTag(1) as! UILabel
         ranking.text = "\(indexPath.row+1)位"
-        // name
-        let name = rankingTableView.viewWithTag(2) as! UILabel
-        if appDelegate.nameData[indexPath.row] == nil {
-            name.text = "no data"
-        } else {
-            name.text = "\(appDelegate.nameData[indexPath.row])さん"
+        
+        if let unwrapObject = object {
+            // name
+            let name = cell.viewWithTag(2) as! UILabel
+            name.text = "\(unwrapObject.objectForKey("name"))さん"
+            // score
+            let score = cell.viewWithTag(3) as! UILabel
+            score.text = "\(unwrapObject.objectForKey("score"))連打"
         }
-        // score
-        let score = rankingTableView.viewWithTag(3) as! UILabel
-        if appDelegate.scoreData[indexPath.row] == nil {
-            score.text = "-"
-        } else {
-            score.text = "\(appDelegate.scoreData[indexPath.row])連打"
-        }
+        
         return cell
     }
 }

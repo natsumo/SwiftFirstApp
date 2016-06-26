@@ -25,6 +25,9 @@ class GameViewController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // 文字サイズ自動調整
+        self.label.adjustsFontSizeToFitWidth = true
+        // 初期値設定
         self.label.text = "↓Startボタンを押してゲームスタート↓"
         tapFlag = false
     }
@@ -37,10 +40,11 @@ class GameViewController: UIViewController{
         count = 0
         // タイマーを13秒にする
         countTimer = 13
-        timerFunc()
+        // タイマーを起動
+        NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: "timerAction:", userInfo: nil, repeats: true)
     }
     
-    // 「Start」ボタン押下時の処理
+    // スコアの保存
     func saveScore (name: String, score: Int) {
         // **********【問題１】名前とスコアを保存しよう！**********
         // 保存先クラスを作成
@@ -60,53 +64,7 @@ class GameViewController: UIViewController{
         }
         // **************************************************
     }
-    
-    // 「ランキングを見る」ボタン押下時の処理
-    @IBAction func checkRanking(sender: UIBarButtonItem) {
-        // 検索件数
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        let searchNum = appDelegate.rankingNumber
         
-        var arrayNameData = Array(count: searchNum, repeatedValue: AnyObject!())
-        var arrayScoreData = Array(count: searchNum, repeatedValue: AnyObject!())
-        
-        // **********【問題２】ランキングを表示しよう！**********
-        // GameScoreクラスを検索するクエリを作成
-        let query = NCMBQuery(className: "GameScore")
-        // scoreの降順でデータを取得するように設定する
-        query.addDescendingOrder("score")
-        // 検索件数を設定
-        query.limit = Int32(searchNum)
-        // データストアを検索
-        query.findObjectsInBackgroundWithBlock { (objects: [AnyObject]!, error: NSError!) -> Void in
-            if error != nil {
-                // 検索に失敗した場合の処理
-                print("検索に失敗しました。エラーコード：\(error.code)")
-            } else {
-                // 検索に成功した場合の処理
-                print("検索に成功しました。")
-                // オブジェクトから必要なnameとscoreの値を取り出す
-                var i = 0
-                for object in objects {
-                    arrayNameData[i] = object.objectForKey("name")
-                    arrayScoreData[i] = object.objectForKey("score")
-                    i += 1
-                }
-            }
-            // 取得した名前とスコアをAppDelegateのフィールド値に設定
-            appDelegate.nameData = arrayNameData
-            appDelegate.scoreData = arrayScoreData
-            // ランキング画面に遷移
-            self.performSegueWithIdentifier("toLanking", sender: self)
-        }
-        // **************************************************
-    }
-    
-    // タイマーを作成
-    func timerFunc(){
-        NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: "timerAction:", userInfo: nil, repeats: true)
-    }
-    
     // タイマーの処理
     func timerAction(sender:NSTimer){
         if countTimer >= 11 {
