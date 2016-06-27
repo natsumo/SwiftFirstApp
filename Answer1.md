@@ -1,36 +1,36 @@
-## �y���P�z�������킹
+## 【問題１】答え合わせ
 
-### �j�t�e�B�N���E�hmobile backend��ł̊m�F
+### ニフティクラウドmobile backend上での確認
 ![mBaaS](/readme-img/mBaaS.png)
 
-* �ۑ����ꂽ�f�[�^���m�F���܂��傤
- * �u�f�[�^�X�g�A�v���N���b�N����ƁA�u`GameScore`�v�N���X�Ƀf�[�^���o�^����Ă��邱�Ƃ��m�F�ł��܂��B
+* 保存されたデータを確認しましょう
+ * 「データストア」をクリックすると、「`GameScore`」クラスにデータが登録されていることが確認できます。
 
 ![ans1-1](/readme-img/ans1-1.png)
 
-* ��}�̓X�R�A��35�A�łŖ��O���u�����������v�Ƃ����ꍇ�̗�ł��B
+* 上図はスコアが35連打で名前を「あいうえお」とした場合の例です。
 
-### �R�[�h�̓������킹
+### コードの答え合わせ
 
 ![Xcode](/readme-img/Xcode.png)
 
-* �͔͉𓚂͈ȉ��ł�
+* 模範解答は以下です
 
 ```swift
-// **********�y���P�z���O�ƃX�R�A��ۑ����悤�I**********
-// �ۑ���N���X���쐬
+// **********【問題１】名前とスコアを保存しよう！**********
+// 保存先クラスを作成
 let obj = NCMBObject(className: "GameScore")
-// �l��ݒ�
+// 値を設定
 obj.setObject(name, forKey: "name")
 obj.setObject(score, forKey: "score")
-// �ۑ������{
+// 保存を実施
 obj.saveInBackgroundWithBlock{(error: NSError!) -> Void in 
     if (error != nil) {
-        // �ۑ��Ɏ��s�����ꍇ�̏���
-        print("�ۑ��Ɏ��s���܂����B�G���[�R�[�h:\(error.code)")
+        // 保存に失敗した場合の処理
+        print("保存に失敗しました。エラーコード:\(error.code)")
     }else{
-        // �ۑ��ɐ��������ꍇ�̏���
-        print("�ۑ��ɐ������܂����BobjectId:\(obj.objectId)")
+        // 保存に成功した場合の処理
+        print("保存に成功しました。objectId:\(obj.objectId)")
     }
 }
 // **************************************************

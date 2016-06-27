@@ -1,50 +1,41 @@
-## y–â‘è‚Qz“š‚¦‡‚í‚¹
+## ã€å•é¡Œï¼’ã€‘ç­”ãˆåˆã‚ã›
 
-### ƒ‰ƒ“ƒLƒ“ƒO‰æ–Ê‚ÌŠm”F
+### ãƒ©ãƒ³ã‚­ãƒ³ã‚°ç”»é¢ã®ç¢ºèª
 
-* ƒ‰ƒ“ƒLƒ“ƒO‰æ–Ê‚ğŠm”F‚µ‚Ü‚µ‚å‚¤
- * ƒAƒvƒŠ‚Åuƒ‰ƒ“ƒLƒ“ƒO‚ğŒ©‚év‚ğƒ^ƒbƒv‚·‚é‚ÆˆÈ‰º‚Ì‚æ‚¤‚Éƒ‰ƒ“ƒLƒ“ƒO‚ª•\¦‚³‚ê‚Ü‚·
+* ãƒ©ãƒ³ã‚­ãƒ³ã‚°ç”»é¢ã‚’ç¢ºèªã—ã¾ã—ã‚‡ã†
+ * ã‚¢ãƒ—ãƒªã§ã€Œãƒ©ãƒ³ã‚­ãƒ³ã‚°ã‚’è¦‹ã‚‹ã€ã‚’ã‚¿ãƒƒãƒ—ã™ã‚‹ã¨ä»¥ä¸‹ã®ã‚ˆã†ã«ãƒ©ãƒ³ã‚­ãƒ³ã‚°ãŒè¡¨ç¤ºã•ã‚Œã¾ã™
 
 ![ans2-1](/readme-img/ans2-1.png)
 
-* ã}‚Í‚P‰ñ—V‚ñ‚¾ê‡‚Ì—á‚Å‚·B•¡”‰ñ—V‚ñ‚ÅAƒ‰ƒ“ƒLƒ“ƒO‚ª•\¦‚³‚ê‚é‚±‚Æ‚ğŠm”F‚µ‚Ü‚µ‚å‚¤I
+* ä¸Šå›³ã¯ï¼“å›éŠã‚“ã å ´åˆã®ä¾‹ã§ã™ã€‚è¤‡æ•°å›éŠã‚“ã§ã€ãƒ©ãƒ³ã‚­ãƒ³ã‚°ãŒè¡¨ç¤ºã•ã‚Œã‚‹ã“ã¨ã‚’ç¢ºèªã—ã¾ã—ã‚‡ã†ï¼
 
-### ƒR[ƒh‚Ì“š‚¦‡‚í‚¹
+### ã‚³ãƒ¼ãƒ‰ã®ç­”ãˆåˆã‚ã›
 
 ![Xcode](/readme-img/Xcode.png)
 
-* –Í”Í‰ğ“š‚ÍˆÈ‰º‚Å‚·
+* æ¨¡ç¯„è§£ç­”ã¯ä»¥ä¸‹ã§ã™
 
 ```swift
-// **********y–â‘è‚Qzƒ‰ƒ“ƒLƒ“ƒO‚ğ•\¦‚µ‚æ‚¤I**********
-// GameScoreƒNƒ‰ƒX‚ğŒŸõ‚·‚éƒNƒGƒŠ‚ğì¬
+// **********ã€å•é¡Œï¼’ã€‘ãƒ©ãƒ³ã‚­ãƒ³ã‚°ã‚’è¡¨ç¤ºã—ã‚ˆã†ï¼**********
+// GameScoreã‚¯ãƒ©ã‚¹ã‚’æ¤œç´¢ã™ã‚‹ã‚¯ã‚¨ãƒªã‚’ä½œæˆ
 let query = NCMBQuery(className: "GameScore")
-// score‚Ì~‡‚Åƒf[ƒ^‚ğæ“¾‚·‚é‚æ‚¤‚Éİ’è‚·‚é
+// scoreã®é™é †ã§ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—ã™ã‚‹ã‚ˆã†ã«è¨­å®šã™ã‚‹
 query.addDescendingOrder("score")
-// ŒŸõŒ”‚ğİ’è
-query.limit = Int32(searchNum)
-// ƒf[ƒ^ƒXƒgƒA‚ğŒŸõ
+// æ¤œç´¢ä»¶æ•°ã‚’è¨­å®š
+query.limit = Int32(rankingNumber)
+// ãƒ‡ãƒ¼ã‚¿ã‚¹ãƒˆã‚¢ã‚’æ¤œç´¢
 query.findObjectsInBackgroundWithBlock { (objects: [AnyObject]!, error: NSError!) -> Void in
     if error != nil {
-        // ŒŸõ‚É¸”s‚µ‚½ê‡‚Ìˆ—
-        print("ŒŸõ‚É¸”s‚µ‚Ü‚µ‚½BƒGƒ‰[ƒR[ƒhF\(error.code)")
+        // æ¤œç´¢ã«å¤±æ•—ã—ãŸå ´åˆã®å‡¦ç†
+        print("æ¤œç´¢ã«å¤±æ•—ã—ã¾ã—ãŸã€‚ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰ï¼š\(error.code)")
     } else {
-        // ŒŸõ‚É¬Œ÷‚µ‚½ê‡‚Ìˆ—
-        print("ŒŸõ‚É¬Œ÷‚µ‚Ü‚µ‚½B")
-        // ƒIƒuƒWƒFƒNƒg‚©‚ç•K—v‚Èname‚Æscore‚Ì’l‚ğæ‚èo‚·
-        var i = 0
-        for object in objects {
-            arrayNameData[i] = object.objectForKey("name")
-            arrayScoreData[i] = object.objectForKey("score")
-            i += 1
-        }
+        // æ¤œç´¢ã«æˆåŠŸã—ãŸå ´åˆã®å‡¦ç†
+        print("æ¤œç´¢ã«æˆåŠŸã—ã¾ã—ãŸã€‚")
+        // å–å¾—ã—ãŸãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´
+        self.rankingArray = objects as! Array
+        // ãƒ†ãƒ¼ãƒ–ãƒ«ãƒ“ãƒ¥ãƒ¼ã‚’ãƒªãƒ­ãƒ¼ãƒ‰
+        self.rankingTableView.reloadData()
     }
-    // æ“¾‚µ‚½–¼‘O‚ÆƒXƒRƒA‚ğAppDelegate‚ÌƒtƒB[ƒ‹ƒh’l‚Éİ’è
-    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-    appDelegate.nameData = arrayNameData
-    appDelegate.scoreData = arrayScoreData
-    // ƒ‰ƒ“ƒLƒ“ƒO‰æ–Ê‚É‘JˆÚ
-    self.performSegueWithIdentifier("toLanking", sender: self)
 }
 // **************************************************
 ```
