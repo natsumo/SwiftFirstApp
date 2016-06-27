@@ -26,7 +26,7 @@ class RankingViewController: UIViewController, UITableViewDataSource, UITableVie
         getScore()
     }
     
-    // ランキングを検索し表示する
+    // ランキングを検索する
     func getScore() {
         // **********【問題２】ランキングを表示しよう！**********
         // GameScoreクラスを検索するクエリを作成
