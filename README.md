@@ -59,7 +59,7 @@
  * このとき、ダブルクォーテーション（`"`）を消さないように注意してください！
 
 ## __【問題１】__：名前とスコアの保存をしてみよう！
-`GameViewController.swift`を開きます。下図の`saveScore`メソッドを編集し、引数の__`name`__（アラートで入力した名前）と__`score`__（連打ゲームでタップした回数）の値をmBaaSに保存する処理をコーディングしてください
+`GameViewController.swift`を開きます。下図の__`saveScore`__メソッドを編集し、引数の__`name`__（アラートで入力した名前）と__`score`__（連打ゲームでタップした回数）の値をmBaaSに保存する処理をコーディングしてください
 
 ![問題1-1](/readme-img/1-1.png)
 
@@ -68,7 +68,7 @@
 * `name`を保存するフィールドを「`name`」、`score`を保存するフィールドを「`score`」として保存してください
 
 ### ヒント
-* [ニフティクラウドmobile backend](http://mb.cloud.nifty.com/)のiOSドキュメントはObjective-Cで書かれていますので、Swiftに書き換えたものを用意しましたので、ご覧ください。
+* [ニフティクラウドmobile backend](http://mb.cloud.nifty.com/)のiOSドキュメントはObjective-Cで書かれていますので、Swiftに書き換えたものを用意しました
  * [Swiftでデータベースを使おう！①（保存・取得・更新・削除）](http://qiita.com/natsumo/items/c00cf7a48e0f8cd8d236)
 
 ### コーディング後の作業
@@ -107,12 +107,12 @@ __【作業1-2】__シュミレーターで実行、「Start」ボタンを押�
 
 
 ## __【問題２】__：ランキングを表示しよう！
-`GameViewController.swift`を開きます。下図の`checkRanking`メソッドを編集し、データストアの`GameScore`クラスに保存した`name`と`score`のデータを`score`の降順で検索・取得する処理をコーディングしてください
+`RankingViewController.swift`を開きます。下図の`checkRanking`メソッドを編集し、データストアの`GameScore`クラスに保存した`name`と`score`のデータを`score`の降順で検索・取得する処理をコーディングしてください
 
 ![問題2-1](/readme-img/2-1.png)
 
 * 検索データ件数は５件とします
- * ただし、この値は「`AppDelegate`」のフィールドに値を設定しているため、「`5`」の代わりに「`Int32(searchNum)`」を使用して設定してください
+ * ただし、この値は「`rankingNumber`」としてフィールドに設定しているため、「`5`」の代わりに「`Int32(rankingNumber)`」を使用して設定してください
 
 ### ヒント
 * [ニフティクラウドmobile backend](http://mb.cloud.nifty.com/)のiOSドキュメントはObjective-Cで書かれていますので、Swiftに書き換えたものを用意しましたので、ご覧ください。
@@ -146,34 +146,20 @@ __【作業2-2】__シュミレーターで実行、「Start」ボタンを押�
 
 ※エラーコードが出た場合は[こちら](http://mb.cloud.nifty.com/doc/current/rest/common/error.html#REST%20API%E3%81%AE%E3%82%A8%E3%83%A9%E3%83%BC%E3%82%B3%E3%83%BC%E3%83%89%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6)で確認できます
 
-* 検索に成功しても、ランキング画面に表示するためには次の処理が必要です
+* 検索の状態（成功・失敗）に関係なく、「ランキングを見る」ボタンをタップしても、まだランキングは表示されません
 
-__【作業2-3】__検索に成功したら、該当する箇所に以下の処理を追記して、取得した値から必要な値を取り出し、ランキング画面へ遷移させます
+__【作業2-3】__検索に成功したら、該当する箇所に以下の処理を追記して、取得した値から必要なデータを取り出し、ランキング画面へ反映させます
 
 * 検索に成功した場合の処理を行う箇所に追記
 
 ```swift
-// オブジェクトから必要なnameとscoreの値を取り出す
-var i = 0
-for object in objects {
-    arrayNameData[i] = object.objectForKey("name")
-    arrayScoreData[i] = object.objectForKey("score")
-    i += 1
-}
+// 取得したデータを格納
+self.rankingArray = objects as! Array
+// テーブルビューをリロード
+self.rankingTableView.reloadData()
 ```
 
-* 検索処理内の一番最後に追記
-
-```swift
-// 取得した名前とスコアをAppDelegateのフィールド値に設定
-let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-appDelegate.nameData = arrayNameData
-appDelegate.scoreData = arrayScoreData
-// ランキング画面に遷移
-self.performSegueWithIdentifier("toLanking", sender: self)
-```
-
-__【作業2-2】__シュミレーターで実行、「ランキングを見る」ボタンを押します
+__【作業2-4】__シュミレーターで実行、「ランキングを見る」ボタンを押します
 
 * 先ほどのスコアが表示されれば完成です！おめでとうございます★
 
