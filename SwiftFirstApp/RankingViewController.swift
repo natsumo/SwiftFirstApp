@@ -10,17 +10,19 @@ import UIKit
 import NCMB
 
 class RankingViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-    // rankingTableView
+    // 「rankingTableView」ランキングを表示するテーブル
     @IBOutlet weak var rankingTableView: UITableView!
     // ランキング取得数
     let rankingNumber = 5
-    // 取得したデータ格納用配列
+    // 取得したデータを格納する配列
     var rankingArray: Array<NCMBObject> = []
     
+    // 画面表示時に取得されるメソッド
     override func viewDidLoad() {
         super.viewDidLoad()
         rankingTableView.delegate = self
         rankingTableView.dataSource = self
+        // 保存したデータを取得する
         getScore()
     }
     
@@ -43,7 +45,6 @@ class RankingViewController: UIViewController, UITableViewDataSource, UITableVie
                 print("検索に成功しました。")
                 // 取得したデータを格納
                 self.rankingArray = objects as! Array
-                print(self.rankingArray)
                 // テーブルビューをリロード
                 self.rankingTableView.reloadData()
             }
@@ -64,18 +65,16 @@ class RankingViewController: UIViewController, UITableViewDataSource, UITableVie
         if indexPath.row < rankingArray.count {
             object = self.rankingArray[indexPath.row]
         }
-        print(indexPath.row)
-        print(rankingArray.count)
         
-        // Ranking
+        // 順位の表示
         let ranking = cell.viewWithTag(1) as! UILabel
         ranking.text = "\(indexPath.row+1)位"
         
         if let unwrapObject = object {
-            // name
+            // 名前の表示
             let name = cell.viewWithTag(2) as! UILabel
             name.text = "\(unwrapObject.objectForKey("name"))さん"
-            // score
+            // スコアの表示
             let score = cell.viewWithTag(3) as! UILabel
             score.text = "\(unwrapObject.objectForKey("score"))連打"
         }

@@ -12,23 +12,29 @@ import NCMB
 class GameViewController: UIViewController{
     // タップ回数
     var count = 0
-    // タップフラグ
+    // 「tapFlag」的のタップ可否設定
     var tapFlag = false
     // タイマー（秒）
     var countTimer = 0
-    // label
+    // 「label」ラベル
     @IBOutlet weak var label: UILabel!
-    // counter
+    // 「counter」テキストフィールド
     @IBOutlet weak var counter: UITextField!
     // 「Start」ボタン
     @IBOutlet weak var start: UIButton!
+    // 「ランキングを見る」ボタン
+    @IBOutlet weak var checkRanking: UIBarButtonItem!
     
+    // 画面表示時に取得されるメソッド
     override func viewDidLoad() {
         super.viewDidLoad()
         // 文字サイズ自動調整
         self.label.adjustsFontSizeToFitWidth = true
-        // 初期値設定
+        // ラベルの初期値設定
         self.label.text = "↓Startボタンを押してゲームスタート↓"
+        // テキストフィールド編集不可
+        self.counter.enabled = false
+        // 的のタップを不可に設定
         tapFlag = false
     }
     
@@ -36,6 +42,7 @@ class GameViewController: UIViewController{
     @IBAction func startGame(sender: UIButton) {
         // 実行中ボタンの無効化
         sender.enabled = false
+        checkRanking.enabled = false
         // カウンターを0にする
         count = 0
         // タイマーを13秒にする
@@ -100,13 +107,14 @@ class GameViewController: UIViewController{
             self.saveScore(alert.textFields![0].text!, score: sender)
             // 名前とスコアの表示
             self.label.text = "\(alert.textFields![0].text!)さんのスコアは\(sender)連打でした"
-            // 「Start」ボタンを有効化
+            // 実行後ボタンの有効化
             self.start.enabled = true
+            self.checkRanking.enabled = true
             })
         presentViewController(alert, animated: true, completion: nil)
     }
     
-    // viewタップ（シングル）時の処理
+    // viewシングルタップ時の処理
     @IBAction func tapView(sender: UITapGestureRecognizer) {
         if tapFlag {
             self.count += 1
