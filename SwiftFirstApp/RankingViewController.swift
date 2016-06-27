@@ -10,42 +10,69 @@ import UIKit
 import NCMB
 
 class RankingViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-    // rankingTableView
+    // 「rankingTableView」ランキングを表示するテーブル
     @IBOutlet weak var rankingTableView: UITableView!
+    // ランキング取得数
+    let rankingNumber = 5
+    // 取得したデータを格納する配列
+    var rankingArray: Array<NCMBObject> = []
     
+    // 画面表示時に取得されるメソッド
     override func viewDidLoad() {
         super.viewDidLoad()
         rankingTableView.delegate = self
         rankingTableView.dataSource = self
+        // 保存したデータを取得する
+        getScore()
+    }
+    
+    // ランキングを検索する
+    func getScore() {
+        // **********【問題２】ランキングを表示しよう！**********
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+        // **************************************************
     }
     
     // rankingTableViewのセルの数を指定
     func tableView(table: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        return appDelegate.rankingNumber
+        return rankingNumber
     }
     
     // rankingTableViewのセルの内容を設定
     func tableView(table: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = rankingTableView.dequeueReusableCellWithIdentifier("rankingTableCell", forIndexPath: indexPath)
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        // Ranking
-        let ranking = rankingTableView.viewWithTag(1) as! UILabel
+        var object: NCMBObject?
+        // 「表示件数」＜「取得件数」の場合のobjectを作成
+        if indexPath.row < rankingArray.count {
+            object = self.rankingArray[indexPath.row]
+        }
+        
+        // 順位の表示
+        let ranking = cell.viewWithTag(1) as! UILabel
         ranking.text = "\(indexPath.row+1)位"
-        // name
-        let name = rankingTableView.viewWithTag(2) as! UILabel
-        if appDelegate.nameData[indexPath.row] == nil {
-            name.text = "no data"
-        } else {
-            name.text = "\(appDelegate.nameData[indexPath.row])さん"
+        
+        if let unwrapObject = object {
+            // 名前の表示
+            let name = cell.viewWithTag(2) as! UILabel
+            name.text = "\(unwrapObject.objectForKey("name"))さん"
+            // スコアの表示
+            let score = cell.viewWithTag(3) as! UILabel
+            score.text = "\(unwrapObject.objectForKey("score"))連打"
         }
-        // score
-        let score = rankingTableView.viewWithTag(3) as! UILabel
-        if appDelegate.scoreData[indexPath.row] == nil {
-            score.text = "-"
-        } else {
-            score.text = "\(appDelegate.scoreData[indexPath.row])連打"
-        }
+        
         return cell
     }
 }
