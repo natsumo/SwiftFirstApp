@@ -168,3 +168,13 @@ __【作業2-4】__シュミレーターで実行、「ランキングを見る�
 ▼答えはこちら▼
 
 [__【問題２】解答__](https://github.com/natsumo/SwiftFirstApp/blob/AnswerProject/Answer2.md)
+
+## 参考
+
+* 問題の回答を実装した完全なプロジェクトをご用意しています
+
+▼完成版プロジェクト▼
+
+[__「【完成版】連打ゲーム」__](https://github.com/natsumo/SwiftFirstApp/archive/AnswerProject.zip)
+
+* APIキーを設定してご利用ください
