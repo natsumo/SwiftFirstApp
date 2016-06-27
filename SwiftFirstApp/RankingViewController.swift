@@ -22,11 +22,11 @@ class RankingViewController: UIViewController, UITableViewDataSource, UITableVie
         super.viewDidLoad()
         rankingTableView.delegate = self
         rankingTableView.dataSource = self
-        // 保存したデータを取得する
+        // 保存したデータの検索と取得
         checkRanking()
     }
     
-    // ランキングを検索する
+    // 【mBaaS】保存したデータの検索と取得
     func checkRanking() {
         // **********【問題２】ランキングを表示しよう！**********
         // GameScoreクラスを検索するクエリを作成
