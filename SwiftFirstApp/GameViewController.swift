@@ -96,12 +96,12 @@ class GameViewController: UIViewController{
     
     // 名前入力アラートの表示
     func inputName (sender: Int) {
-        // ファイル名を決めるアラートを表示
+        // 名前を入力するアラートを表示
         let alert = UIAlertController(title: "スコア登録", message: "名前を入力してください", preferredStyle: .Alert)
         // UIAlertControllerにtextFieldを追加
         alert.addTextFieldWithConfigurationHandler { (textField: UITextField!) -> Void in
         }
-        // アラートのOK押下時の処理
+        // アラートの「OK」ボタン押下時の処理
         alert.addAction(UIAlertAction(title: "OK", style: .Default) { (action: UIAlertAction!) -> Void in
             // 名前とスコアを保存
             self.saveScore(alert.textFields![0].text!, score: sender)

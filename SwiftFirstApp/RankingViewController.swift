@@ -17,7 +17,7 @@ class RankingViewController: UIViewController, UITableViewDataSource, UITableVie
     // 取得したデータを格納する配列
     var rankingArray: Array<NCMBObject> = []
     
-    // 画面表示時に取得されるメソッド
+    // 画面表示時に実行されるメソッド
     override func viewDidLoad() {
         super.viewDidLoad()
         rankingTableView.delegate = self
@@ -59,6 +59,7 @@ class RankingViewController: UIViewController, UITableViewDataSource, UITableVie
     
     // rankingTableViewのセルの内容を設定
     func tableView(table: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        // キーを「cell」としてcellデータを取得
         let cell = rankingTableView.dequeueReusableCellWithIdentifier("rankingTableCell", forIndexPath: indexPath)
         var object: NCMBObject?
         // 「表示件数」＜「取得件数」の場合のobjectを作成
