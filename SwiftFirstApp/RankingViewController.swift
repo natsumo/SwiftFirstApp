@@ -23,11 +23,11 @@ class RankingViewController: UIViewController, UITableViewDataSource, UITableVie
         rankingTableView.delegate = self
         rankingTableView.dataSource = self
         // 保存したデータを取得する
-        getScore()
+        checkRanking()
     }
     
     // ランキングを検索する
-    func getScore() {
+    func checkRanking() {
         // **********【問題２】ランキングを表示しよう！**********
         // GameScoreクラスを検索するクエリを作成
         let query = NCMBQuery(className: "GameScore")
