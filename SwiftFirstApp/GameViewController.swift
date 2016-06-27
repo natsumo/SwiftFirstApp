@@ -51,7 +51,7 @@ class GameViewController: UIViewController{
         NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: "timerAction:", userInfo: nil, repeats: true)
     }
     
-    // スコアの保存
+    // 【mBaaS】データの保存
     func saveScore (name: String, score: Int) {
         // **********【問題１】名前とスコアを保存しよう！**********
         
