@@ -115,7 +115,7 @@ __【作業1-2】__シュミレーターで実行、「Start」ボタンを押�
  * ただし、この値は「`rankingNumber`」としてフィールドに設定しているため、「`5`」の代わりに「`Int32(rankingNumber)`」を使用して設定してください
 
 ### ヒント
-* [ニフティクラウドmobile backend](http://mb.cloud.nifty.com/)のiOSドキュメントはObjective-Cで書かれていますので、Swiftに書き換えたものを用意しましたので、ご覧ください。
+* [ニフティクラウドmobile backend](http://mb.cloud.nifty.com/)のiOSドキュメントはObjective-Cで書かれていますので、Swiftに書き換えたものを用意しました
  * [Swiftでデータベースを使おう！③（ランキングを作る・アクセス権限）](http://qiita.com/natsumo/items/25074fa1ce209033e98e)
 
 ### コーディング後の作業
