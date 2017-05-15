@@ -18,11 +18,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let applicationkey = "YOUR_NCMB_APPLICATIONKEY"
     let clientkey      = "YOUR_NCMB_CLIENTKEY"
     
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         //********** SDKの初期化 **********
         NCMB.setApplicationKey(applicationkey, clientKey: clientkey)
         
         return true
     }
 }
-

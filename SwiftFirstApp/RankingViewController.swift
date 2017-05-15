@@ -30,31 +30,40 @@ class RankingViewController: UIViewController, UITableViewDataSource, UITableVie
     func checkRanking() {
         // **********【問題２】ランキングを表示しよう！**********
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+        // GameScoreクラスを検索するクエリを作成
+        let query = NCMBQuery(className: "GameScore")
+        // scoreの降順でデータを取得するように設定する
+        query?.addDescendingOrder("score")
+        // 検索件数を設定
+        query?.limit = Int32(rankingNumber)
+        // データストアを検索
+        query?.findObjectsInBackground({(objects, err) in
+            if err != nil {
+                let error = err as! NSError
+                // 検索に失敗した場合の処理
+                print("検索に失敗しました。エラーコード：\(error.code)")
+            } else {
+                // 検索に成功した場合の処理
+                print("検索に成功しました。")
+                // 取得したデータを格納
+                self.rankingArray = objects as! Array
+                // テーブルビューをリロード
+                self.rankingTableView.reloadData()
+            }
+        })
 
         // **************************************************
     }
     
     // rankingTableViewのセルの数を指定
-    func tableView(table: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ table: UITableView, numberOfRowsInSection section: Int) -> Int {
         return rankingNumber
     }
     
     // rankingTableViewのセルの内容を設定
-    func tableView(table: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ table: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // キーを「cell」としてcellデータを取得
-        let cell = rankingTableView.dequeueReusableCellWithIdentifier("rankingTableCell", forIndexPath: indexPath)
+        let cell = rankingTableView.dequeueReusableCell(withIdentifier: "rankingTableCell", for: indexPath)
         var object: NCMBObject?
         // 「表示件数」＜「取得件数」の場合のobjectを作成
         if indexPath.row < rankingArray.count {
@@ -67,11 +76,18 @@ class RankingViewController: UIViewController, UITableViewDataSource, UITableVie
         
         if let unwrapObject = object {
             // 名前の表示
-            let name = cell.viewWithTag(2) as! UILabel
-            name.text = "\(unwrapObject.objectForKey("name"))さん"
+            let nameLabel = cell.viewWithTag(2) as! UILabel
+            let name = unwrapObject.object(forKey: "name") as! String?
+            if name != nil {
+                nameLabel.text = name! + "さん"
+            }
+            
             // スコアの表示
-            let score = cell.viewWithTag(3) as! UILabel
-            score.text = "\(unwrapObject.objectForKey("score"))連打"
+            let scoreLabel = cell.viewWithTag(3) as! UILabel
+            let score = unwrapObject.object(forKey: "score") as! Int?
+            if score != nil {
+                scoreLabel.text = String(score!) + "連打"
+            }
         }
         
         return cell
