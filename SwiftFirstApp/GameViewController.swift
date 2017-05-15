@@ -55,22 +55,17 @@ class GameViewController: UIViewController{
     func saveScore (_ name: String, score: Int) {
         // **********【問題１】名前とスコアを保存しよう！**********
         
-        // 保存先クラスを作成
-        let obj = NCMBObject(className: "GameScore")
-        // 値を設定
-        obj?.setObject(name, forKey: "name")
-        obj?.setObject(score, forKey: "score")
-        // 保存を実施
-        obj?.saveInBackground({(err) in
-            if err != nil {
-                let error = err as! NSError
-                // 保存に失敗した場合の処理
-                print("保存に失敗しました。エラーコード:\(error.code)")
-            }else{
-                // 保存に成功した場合の処理
-                print("保存に成功しました。objectId:\(obj?.objectId)")
-            }
-        })
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
          
         // **************************************************
     }
