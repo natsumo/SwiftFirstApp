@@ -29,7 +29,6 @@ class RankingViewController: UIViewController, UITableViewDataSource, UITableVie
     // 【mBaaS】保存したデータの検索と取得
     func checkRanking() {
         // **********【問題２】ランキングを表示しよう！**********
-        
         // GameScoreクラスを検索するクエリを作成
         let query = NCMBQuery(className: "GameScore")
         // scoreの降順でデータを取得するように設定する
@@ -37,11 +36,11 @@ class RankingViewController: UIViewController, UITableViewDataSource, UITableVie
         // 検索件数を設定
         query?.limit = Int32(rankingNumber)
         // データストアを検索
-        query?.findObjectsInBackground({(objects, err) in
-            if err != nil {
-                let error = err as! NSError
+        query?.findObjectsInBackground({(objects, error) in
+            if error != nil {
+                let err = error as! NSError
                 // 検索に失敗した場合の処理
-                print("検索に失敗しました。エラーコード：\(error.code)")
+                print("検索に失敗しました。エラーコード：\(err.code)")
             } else {
                 // 検索に成功した場合の処理
                 print("検索に成功しました。")
@@ -51,7 +50,6 @@ class RankingViewController: UIViewController, UITableViewDataSource, UITableVie
                 self.rankingTableView.reloadData()
             }
         })
-
         // **************************************************
     }
     
