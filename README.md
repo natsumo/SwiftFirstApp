@@ -72,7 +72,7 @@ Swift2.0<br>
 <div style="page-break-before:always"></div>
 
 ## 【問題１】<br>名前とスコアの保存をしてみよう！
-`GameViewController.swift`を開きます。下図の__`saveScore`__ メソッドを編集し、引数の__`name`__ （アラートで入力した名前）と__`score`__ （連打ゲームでタップした回数）の値をmBaaSに保存する処理をコーディングしてください
+`GameViewController.swift`を開きます。下図の__`saveScore`__ メソッドを編集し、引数の__`name`__ （アラートで入力した名前）と__`score`__ （連打ゲームでタップした回数）の値を mobile backend に保存する処理をコーディングしてください
 
 ![問題1-1](/readme-img/1-1.png)<br>※ 画像はSwift2.0 ver.です
 
