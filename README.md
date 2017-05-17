@@ -114,7 +114,7 @@ Swift2.0<br>
 <div style="page-break-before:always"></div>
 
 #### 【作業1-2】
-シュミレーターで実行、「Start」ボタンを押してゲームを遊びます
+シミュレーターで実行、「Start」ボタンを押してゲームを遊びます
 
 * 名前を入力し、「OK」がタップされると【問題１】で作成した`saveScore`メソッドが呼ばれ、データが保存されます
 * このとき下記のいずれかのログが出力されます
@@ -199,7 +199,7 @@ http://mb.cloud.nifty.com/doc/current/rest/common/error.html#REST_APIのエラ�
 <div style="page-break-before:always"></div>
 
 #### 【作業2-2】
-シュミレーターで実行し、「ランキングを見る」ボタンをタップします
+シミュレーターで実行し、「ランキングを見る」ボタンをタップします
 * 画面起動後、`checkRanking`メソッドが呼ばれ、【問題１】で保存されたデータが検索・取得されます
 * このとき下記のいずれかのログが出力されます
  * 検索成功時：「`検索に成功しました。`」
@@ -218,7 +218,7 @@ http://mb.cloud.nifty.com/doc/current/rest/common/error.html#REST_APIのエラ�
  ![code5](/readme-img/code5.png)
 
 #### 【作業2-4】
-シュミレーターで実行、「ランキングを見る」ボタンを押します
+シミュレーターで実行、「ランキングを見る」ボタンを押します
 
 * 先ほどのスコアが表示されれば完成です！おめでとうございます★
 
